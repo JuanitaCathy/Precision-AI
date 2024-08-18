@@ -26,6 +26,25 @@ export default function RootLayout({
           <Navbar />
           {children}
         </main>
+        
+        {/* ChatBot script */}
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.__be = window.__be || {};
+              window.__be.id = "66c23b99e539f9000707397f";
+              (function() {
+                var be = document.createElement('script'); be.type = 'text/javascript'; be.async = true;
+                be.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.chatbot.com/widget/plugin.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(be, s);
+              })();
+            `,
+          }}
+        />
+        <noscript>
+          You need to <a href="https://www.chatbot.com/help/chat-widget/enable-javascript-in-your-browser/" rel="noopener nofollow">enable JavaScript</a> in order to use the AI chatbot tool powered by <a href="https://www.chatbot.com/" rel="noopener nofollow" target="_blank">ChatBot</a>
+        </noscript>
       </body>
     </html>
   )
