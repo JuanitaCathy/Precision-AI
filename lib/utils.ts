@@ -11,6 +11,7 @@ const Notification = {
 
 const THRESHOLD_PERCENTAGE = 40;
 
+
 // Extracts and returns the price from a list of possible elements.
 export function extractPrice(...elements: any) {
   logger.info('Extracting price from elements');
