@@ -9,17 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.3.1",
     "axios": "^1.7.4",
     "cheerio": "^1.0.0",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
-    "react-responsive-carousel": "^3.2.23"
+    "react-responsive-carousel": "^3.2.23",
+    "winston": "^3.14.2"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/winston": "^2.4.4",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
