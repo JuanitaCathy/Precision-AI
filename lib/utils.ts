@@ -1,3 +1,5 @@
+import logger from "./logger"
+
 import { PriceHistoryItem, Product } from "@/types";
 
 const Notification = {
@@ -9,8 +11,10 @@ const Notification = {
 
 const THRESHOLD_PERCENTAGE = 40;
 
+
 // Extracts and returns the price from a list of possible elements.
 export function extractPrice(...elements: any) {
+  logger.info('Extracting price from elements');
   for (const element of elements) {
     const priceText = element.text().trim();
 
@@ -26,7 +30,7 @@ export function extractPrice(...elements: any) {
       return firstPrice || cleanPrice;
     }
   }
-
+  logger.warn('No valid price elements found'); 
   return '';
 }
 
@@ -42,7 +46,6 @@ export function extractDescription($: any) {
   const selectors = [
     ".a-unordered-list .a-list-item",
     ".a-expander-content p",
-    // Add more selectors here if needed
   ];
 
   for (const selector of selectors) {
@@ -55,8 +58,7 @@ export function extractDescription($: any) {
       return textContent;
     }
   }
-
-  // If no matching elements were found, return an empty string
+  logger.warn('No matching elements for product description found');
   return "";
 }
 
@@ -68,7 +70,7 @@ export function getHighestPrice(priceList: PriceHistoryItem[]) {
       highestPrice = priceList[i];
     }
   }
-
+  logger.info(`Highest price determined: ${highestPrice.price}`);
   return highestPrice.price;
 }
 
@@ -81,6 +83,7 @@ export function getLowestPrice(priceList: PriceHistoryItem[]) {
     }
   }
 
+  logger.info(`Lowest price determined: ${lowestPrice.price}`);
   return lowestPrice.price;
 }
 
@@ -106,11 +109,12 @@ export const getEmailNotifType = (
   if (scrapedProduct.discountRate >= THRESHOLD_PERCENTAGE) {
     return Notification.THRESHOLD_MET as keyof typeof Notification;
   }
-
+  logger.info('No significant changes detected for notification');
   return null;
 };
 
 export const formatNumber = (num: number = 0) => {
+  logger.info(`Formatting number: ${num}`);  
   return num.toLocaleString(undefined, {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
